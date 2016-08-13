@@ -60,6 +60,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// require('./style/bootstrap.min.css')
+	// require('./style/style.css')
+	// require('./style/card.css')
+
+
 	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
 
 	// var App = require('./components/App')
@@ -20066,7 +20071,6 @@
 				score += hand[i].v;
 			}
 
-			// var score = _.sum(hand, 'v');
 			if (score > 21) {
 				var aces = _.countBy(hand, { v: 11 }).true; //check if aces is in hand or not 
 				while (score > 21 && aces > 0) {

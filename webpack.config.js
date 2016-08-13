@@ -15,7 +15,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: 'style!css'
+				loader: 'style!css'		//npm install style-loader css-loader --save-dev
 			}
 		]
 	}
