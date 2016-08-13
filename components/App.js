@@ -1,5 +1,9 @@
 import React from 'react'
 const Table = require('./Table')
+require('../style/bootstrap.min.css')
+require('../style/style.css')
+require('../style/card.css')
+
 
 var App = React.createClass({
 
