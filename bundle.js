@@ -19742,11 +19742,7 @@
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
+	'use strict';
 
 	var _react = __webpack_require__(1);
 
@@ -19754,11 +19750,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var Table = __webpack_require__(160);
+
 	var App = _react2.default.createClass({
-		displayName: "App",
+		displayName: 'App',
 
 
-		mixins: [CascadedMixin],
+		// mixins: [CascadedMixin],
 
 		getInitialState: function getInitialState() {
 			return {
@@ -19777,18 +19775,276 @@
 
 	});
 
-	var UselessMixin = {
-		componentDidMount: function componentDidMount() {
-			console.log("Just mounted !");
-		}
-	};
+	// var UselessMixin = {
+	//     componentDidMount: function () {
+	//         console.log("Just mounted !");
+	//     }
+	// };
 
-	var CascadedMixin = {
-		mixins: [UselessMixin]
-	};
+	// var CascadedMixin = {
+	//     mixins: [UselessMixin]
+	// };
+
+
+	// var Table = React.createClass({
+
+	// 	getInitialState: function(){
+
+	// 		var shuffled = _.shuffle(this.props.deck);
+	// 		return {
+	// 			deck: shuffled
+	// 		}
+
+	// 	},
+
+	// 	handleScore: function(hand){
+
+	// 		if(!hand){
+	// 			hand = [];
+	// 		}
+	// 		var score = 0;
+
+	// 		for(var i=0; i < hand.length; i++){
+	// 			score += hand[i].v
+	// 		}
+
+
+	// 		// var score = _.sum(hand, 'v');
+	// 		if(score > 21){
+	// 			var aces = _.countBy(hand, {v: 11}).true;  //check if aces is in hand or not 
+	// 			while(score > 21 && aces > 0){
+	// 				score -= 10;
+	// 				aces -= 1;
+	// 			}
+	// 		}
+	// 		return score;
+	// 	},
+
+	// 	handleDealClick: function(){
+
+	// 		var deck = this.state.deck;
+	// 		var [playerHand, dealerHand] = [[], []];
+
+	// 		if(deck.length < 5){
+	// 			deck = _.shuffle(this.props.deck);
+	// 		}
+
+	// 		playerHand.push(deck.pop());
+	// 		dealerHand.push(deck.pop());
+
+	// 		deck.pop();
+
+	// 		dealerHand.push(deck.pop());
+
+	// 		this.setState({
+	// 			player: playerHand,
+	// 			dealer: dealerHand,
+	// 			deck: deck,
+	// 			status: 'playing'			
+	// 		});
+
+	// 	},
+
+	// 	handleHitClick: function(){
+
+	// 		var newStatus = this.state.status;
+	// 		var playerHand = this.state.player;
+
+	// 		if(this.state.deck.length < 5){
+	// 			this.state.deck = _.shuffle(this.props.deck);
+	// 		}
+
+	// 		var shuffledDeck = _.shuffle(this.props.deck);
+
+	// 		playerHand.push(shuffledDeck.pop());
+
+	// 		var newScore = this.handleScore(playerHand);
+
+	// 		if(newScore > 21){
+	// 			newStatus = 'lose';
+	// 		}
+	// 		if(newScore < 21 && playerHand.length > 5){
+	// 			newStatus = 'win';
+	// 		}
+
+	// 		this.setState({
+	// 			player: playerHand,
+	// 			playerScore: newScore,
+	// 			deck: shuffledDeck,
+	// 			status: newStatus
+	// 		});
+
+	// 	},
+
+	// 	handleStandClick: function(){
+
+	// 		var dealerHand = this.state.dealer;
+	// 		var deck = this.state.deck;
+
+	// 		if(deck.length < 5) {
+	//       deck = _.shuffle(this.props.deck);
+	//     }
+
+	//     var shuffled = _.shuffle(deck);
+
+	//     var dealerScore = this.handleScore(dealerHand);
+	//     var playerScore = this.handleScore(this.state.player);
+
+	//     var dealerHasCharlie = false;
+
+	//     while (dealerScore < playerScore || dealerScore <= 17) {
+
+	//       // deal a card
+	//       dealerHand.push(shuffled.pop());
+	//       dealerScore = this.handleScore(dealerHand);
+
+	//       if(dealerScore < 21 && dealerHand.length == 5){
+	//           // five card charlie
+	//           dealerHasCharlie = true;
+	//           break;
+	//       }
+	//     }
+
+	//     this.setState({
+	//       dealer :  dealerHand,
+	//       deck : shuffled,
+	//       // compute game status
+	//       status : (dealerScore < 21 || dealerHasCharlie) ? 'lose' : 'win'
+	//     });
+
+	// 	},
+
+	// 	render: function(){
+	// 		return(
+	// 			<div clasName="table-board">
+	// 				<Hand showDeck={true} hand={this.state.dealer} />
+	// 				<Interface 
+	// 					playerScore={this.handleScore(this.state.player)} 
+	// 					dealerScore={this.handleScore(this.state.dealer)} 
+	// 					deal={this.handleDealClick} 
+	// 					hit={this.handleHitClick} 
+	// 					stand={this.handleStandClick} 
+	// 					status={this.state.status} 
+	// 				/>
+	// 				<Hand hand={this.state.player} />
+	// 			</div>	
+	// 		);
+	// 	}
+	// });
+
+	// var Hand = React.createClass({
+
+	// 	getDefaultProps: function(){
+	// 		return {
+	// 			hand: []
+	// 		}
+	// 	},
+
+	// 	render: function(){
+	// 		return(
+	// 			<div className='hand'>
+
+	// 				{this.props.showDeck ? <Card hidden={true}/> : ''}
+	// 				{this.props.hand.map(function(card, i){
+	// 						return <Card face={card.f} value={card.v} key={i}/>
+	// 					})
+	// 				}
+	// 			</div>
+	// 		);
+	// 	}
+	// });
+
+	// var Card = React.createClass({
+	// 	render: function(){
+
+	// 		var bgUrl = this.props.hidden ? 'url(img/hidden.png)' : 'url(img/' + this.props.face + '.png)';
+
+	// 		var cardStyle = {backgroundImage: bgUrl};
+
+	// 		return (
+	// 			<div className='card' style={cardStyle}/>
+	// 		);
+	// 	}
+	// });
+
+	// var Interface = React.createClass({
+
+	// 	getDefaultProps: function(){
+	// 		return {
+	// 			status: 'new'
+	// 		}
+	// 	},
+
+	// 	render: function(){
+	// 		return(
+	// 			<div className='panel interface'>
+	// 				<Outcome status={this.props.status}/>
+	// 				<div className="btn-group btn-group-justified" role="group" aria-label="score">
+	// 					<a className="btn btn-default">Dealer Score: {this.props.dealerScore}</a>
+	// 					<a className="btn btn-default">Player Score: {this.props.playerScore}</a>
+	// 				</div>
+	// 				<br/>
+	//         <div className="btn-group btn-group-justified" role="group" aria-label="game">
+	//             <div className="btn-group" role="group">
+	//                 {/* received as props to the Interface component the handleDeal function is now bound to the onClick event */}
+	//                 <button onClick={this.props.deal} type="button" className="btn btn-info">Deal</button>
+	//             </div>
+	//             <div className="btn-group" role="group">
+	//                 <button onClick={this.props.hit} type="button" className="btn btn-success">Hit</button>
+	//             </div>
+	//             <div className="btn-group" role="group">
+	//                 <button onClick={this.props.stand} type="button" className="btn btn-danger">Stand</button>
+	//             </div>
+	//         </div>
+	// 			</div>
+	// 		);
+	// 	}
+	// });
+
+	// var Outcome = React.createClass({
+	//   getDefaultProps : function(){
+	//       return {
+	//           status : "playing",
+	//       }
+	//   },
+	//   render: function() {
+	//     /* nothing fancy happening here , displaying a bootstrap alert representing the game status */
+	//     switch(this.props.status) {
+	//         case "playing":
+	//             return (<div className="alert alert-info" role="alert">Hit or Stand</div>);
+	//             break;
+	//         case "win":
+	//             return (<div className="alert alert-success" role="alert">Win Win Win</div>);
+	//             break;
+	//         case "lose":
+	//             return (<div className="alert alert-danger" role="alert">You Lose</div>);
+	//             break;
+	//         default:
+	//             return(<div className="alert alert-info" role="alert">Click Deal to Start ! </div>);
+	//             break;
+	//     }
+	//   }
+	// });
+
+	module.exports = App;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Hand = __webpack_require__(161);
+	var Interface = __webpack_require__(163);
 
 	var Table = _react2.default.createClass({
-		displayName: "Table",
+		displayName: 'Table',
 
 
 		getInitialState: function getInitialState() {
@@ -19916,8 +20172,8 @@
 
 		render: function render() {
 			return _react2.default.createElement(
-				"div",
-				{ clasName: "table-board" },
+				'div',
+				{ clasName: 'table-board' },
 				_react2.default.createElement(Hand, { showDeck: true, hand: this.state.dealer }),
 				_react2.default.createElement(Interface, {
 					playerScore: this.handleScore(this.state.player),
@@ -19932,8 +20188,24 @@
 		}
 	});
 
+	module.exports = Table;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Card = __webpack_require__(162);
+
 	var Hand = _react2.default.createClass({
-		displayName: "Hand",
+		displayName: 'Hand',
 
 
 		getDefaultProps: function getDefaultProps() {
@@ -19944,8 +20216,8 @@
 
 		render: function render() {
 			return _react2.default.createElement(
-				"div",
-				{ className: "hand" },
+				'div',
+				{ className: 'hand' },
 				this.props.showDeck ? _react2.default.createElement(Card, { hidden: true }) : '',
 				this.props.hand.map(function (card, i) {
 					return _react2.default.createElement(Card, { face: card.f, value: card.v, key: i });
@@ -19954,8 +20226,22 @@
 		}
 	});
 
+	module.exports = Hand;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var Card = _react2.default.createClass({
-		displayName: "Card",
+		displayName: 'Card',
 
 		render: function render() {
 
@@ -19963,12 +20249,28 @@
 
 			var cardStyle = { backgroundImage: bgUrl };
 
-			return _react2.default.createElement("div", { className: "card", style: cardStyle });
+			return _react2.default.createElement('div', { className: 'card', style: cardStyle });
 		}
 	});
 
+	module.exports = Card;
+
+/***/ },
+/* 163 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Outcome = __webpack_require__(164);
+
 	var Interface = _react2.default.createClass({
-		displayName: "Interface",
+		displayName: 'Interface',
 
 
 		getDefaultProps: function getDefaultProps() {
@@ -19979,54 +20281,54 @@
 
 		render: function render() {
 			return _react2.default.createElement(
-				"div",
-				{ className: "panel interface" },
+				'div',
+				{ className: 'panel interface' },
 				_react2.default.createElement(Outcome, { status: this.props.status }),
 				_react2.default.createElement(
-					"div",
-					{ className: "btn-group btn-group-justified", role: "group", "aria-label": "score" },
+					'div',
+					{ className: 'btn-group btn-group-justified', role: 'group', 'aria-label': 'score' },
 					_react2.default.createElement(
-						"a",
-						{ className: "btn btn-default" },
-						"Dealer Score: ",
+						'a',
+						{ className: 'btn btn-default' },
+						'Dealer Score: ',
 						this.props.dealerScore
 					),
 					_react2.default.createElement(
-						"a",
-						{ className: "btn btn-default" },
-						"Player Score: ",
+						'a',
+						{ className: 'btn btn-default' },
+						'Player Score: ',
 						this.props.playerScore
 					)
 				),
-				_react2.default.createElement("br", null),
+				_react2.default.createElement('br', null),
 				_react2.default.createElement(
-					"div",
-					{ className: "btn-group btn-group-justified", role: "group", "aria-label": "game" },
+					'div',
+					{ className: 'btn-group btn-group-justified', role: 'group', 'aria-label': 'game' },
 					_react2.default.createElement(
-						"div",
-						{ className: "btn-group", role: "group" },
+						'div',
+						{ className: 'btn-group', role: 'group' },
 						_react2.default.createElement(
-							"button",
-							{ onClick: this.props.deal, type: "button", className: "btn btn-info" },
-							"Deal"
+							'button',
+							{ onClick: this.props.deal, type: 'button', className: 'btn btn-info' },
+							'Deal'
 						)
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "btn-group", role: "group" },
+						'div',
+						{ className: 'btn-group', role: 'group' },
 						_react2.default.createElement(
-							"button",
-							{ onClick: this.props.hit, type: "button", className: "btn btn-success" },
-							"Hit"
+							'button',
+							{ onClick: this.props.hit, type: 'button', className: 'btn btn-success' },
+							'Hit'
 						)
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "btn-group", role: "group" },
+						'div',
+						{ className: 'btn-group', role: 'group' },
 						_react2.default.createElement(
-							"button",
-							{ onClick: this.props.stand, type: "button", className: "btn btn-danger" },
-							"Stand"
+							'button',
+							{ onClick: this.props.stand, type: 'button', className: 'btn btn-danger' },
+							'Stand'
 						)
 					)
 				)
@@ -20034,50 +20336,64 @@
 		}
 	});
 
-	var Outcome = _react2.default.createClass({
-		displayName: "Outcome",
+	module.exports = Interface;
 
-		getDefaultProps: function getDefaultProps() {
-			return {
-				status: "playing"
-			};
-		},
-		render: function render() {
-			/* nothing fancy happening here , displaying a bootstrap alert representing the game status */
-			switch (this.props.status) {
-				case "playing":
-					return _react2.default.createElement(
-						"div",
-						{ className: "alert alert-info", role: "alert" },
-						"Hit or Stand"
-					);
-					break;
-				case "win":
-					return _react2.default.createElement(
-						"div",
-						{ className: "alert alert-success", role: "alert" },
-						"Win Win Win"
-					);
-					break;
-				case "lose":
-					return _react2.default.createElement(
-						"div",
-						{ className: "alert alert-danger", role: "alert" },
-						"You Lose"
-					);
-					break;
-				default:
-					return _react2.default.createElement(
-						"div",
-						{ className: "alert alert-info", role: "alert" },
-						"Click Deal to Start ! "
-					);
-					break;
-			}
-		}
+/***/ },
+/* 164 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Outcome = _react2.default.createClass({
+	    displayName: "Outcome",
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            status: "playing"
+	        };
+	    },
+	    render: function render() {
+	        /* nothing fancy happening here , displaying a bootstrap alert representing the game status */
+	        switch (this.props.status) {
+	            case "playing":
+	                return _react2.default.createElement(
+	                    "div",
+	                    { className: "alert alert-info", role: "alert" },
+	                    "Hit or Stand"
+	                );
+	                break;
+	            case "win":
+	                return _react2.default.createElement(
+	                    "div",
+	                    { className: "alert alert-success", role: "alert" },
+	                    "Win Win Win"
+	                );
+	                break;
+	            case "lose":
+	                return _react2.default.createElement(
+	                    "div",
+	                    { className: "alert alert-danger", role: "alert" },
+	                    "You Lose"
+	                );
+	                break;
+	            default:
+	                return _react2.default.createElement(
+	                    "div",
+	                    { className: "alert alert-info", role: "alert" },
+	                    "Click Deal to Start ! "
+	                );
+	                break;
+	        }
+	    }
 	});
 
-	exports.default = App;
+	module.exports = Outcome;
 
 /***/ }
 /******/ ]);

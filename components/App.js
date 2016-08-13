@@ -1,8 +1,9 @@
 import React from 'react'
+const Table = require('./Table')
 
 var App = React.createClass({
 
-	mixins: [CascadedMixin],
+	// mixins: [CascadedMixin],
 
 	getInitialState: function(){
 		return {
@@ -33,257 +34,257 @@ var App = React.createClass({
 });
 
 
-var UselessMixin = {
-    componentDidMount: function () {
-        console.log("Just mounted !");
-    }
-};
+// var UselessMixin = {
+//     componentDidMount: function () {
+//         console.log("Just mounted !");
+//     }
+// };
 
-var CascadedMixin = {
-    mixins: [UselessMixin]
-};
-
-
+// var CascadedMixin = {
+//     mixins: [UselessMixin]
+// };
 
 
-var Table = React.createClass({
 
-	getInitialState: function(){
 
-		var shuffled = _.shuffle(this.props.deck);
-		return {
-			deck: shuffled
-		}
+// var Table = React.createClass({
+
+// 	getInitialState: function(){
+
+// 		var shuffled = _.shuffle(this.props.deck);
+// 		return {
+// 			deck: shuffled
+// 		}
 		
-	},
+// 	},
 	
-	handleScore: function(hand){
+// 	handleScore: function(hand){
 
-		if(!hand){
-			hand = [];
-		}
-		var score = 0;
+// 		if(!hand){
+// 			hand = [];
+// 		}
+// 		var score = 0;
 
-		for(var i=0; i < hand.length; i++){
-			score += hand[i].v
-		}
+// 		for(var i=0; i < hand.length; i++){
+// 			score += hand[i].v
+// 		}
 
 
-		// var score = _.sum(hand, 'v');
-		if(score > 21){
-			var aces = _.countBy(hand, {v: 11}).true;  //check if aces is in hand or not 
-			while(score > 21 && aces > 0){
-				score -= 10;
-				aces -= 1;
-			}
-		}
-		return score;
-	},
+// 		// var score = _.sum(hand, 'v');
+// 		if(score > 21){
+// 			var aces = _.countBy(hand, {v: 11}).true;  //check if aces is in hand or not 
+// 			while(score > 21 && aces > 0){
+// 				score -= 10;
+// 				aces -= 1;
+// 			}
+// 		}
+// 		return score;
+// 	},
 	
-	handleDealClick: function(){
+// 	handleDealClick: function(){
 
-		var deck = this.state.deck;
-		var [playerHand, dealerHand] = [[], []];
+// 		var deck = this.state.deck;
+// 		var [playerHand, dealerHand] = [[], []];
 
-		if(deck.length < 5){
-			deck = _.shuffle(this.props.deck);
-		}
+// 		if(deck.length < 5){
+// 			deck = _.shuffle(this.props.deck);
+// 		}
 
-		playerHand.push(deck.pop());
-		dealerHand.push(deck.pop());
+// 		playerHand.push(deck.pop());
+// 		dealerHand.push(deck.pop());
 
-		deck.pop();
+// 		deck.pop();
 
-		dealerHand.push(deck.pop());
+// 		dealerHand.push(deck.pop());
 
-		this.setState({
-			player: playerHand,
-			dealer: dealerHand,
-			deck: deck,
-			status: 'playing'			
-		});
+// 		this.setState({
+// 			player: playerHand,
+// 			dealer: dealerHand,
+// 			deck: deck,
+// 			status: 'playing'			
+// 		});
 
-	},
+// 	},
 
-	handleHitClick: function(){
+// 	handleHitClick: function(){
 		
-		var newStatus = this.state.status;
-		var playerHand = this.state.player;
+// 		var newStatus = this.state.status;
+// 		var playerHand = this.state.player;
 
-		if(this.state.deck.length < 5){
-			this.state.deck = _.shuffle(this.props.deck);
-		}
+// 		if(this.state.deck.length < 5){
+// 			this.state.deck = _.shuffle(this.props.deck);
+// 		}
 
-		var shuffledDeck = _.shuffle(this.props.deck);
+// 		var shuffledDeck = _.shuffle(this.props.deck);
 
-		playerHand.push(shuffledDeck.pop());
+// 		playerHand.push(shuffledDeck.pop());
 
-		var newScore = this.handleScore(playerHand);
+// 		var newScore = this.handleScore(playerHand);
 
-		if(newScore > 21){
-			newStatus = 'lose';
-		}
-		if(newScore < 21 && playerHand.length > 5){
-			newStatus = 'win';
-		}
+// 		if(newScore > 21){
+// 			newStatus = 'lose';
+// 		}
+// 		if(newScore < 21 && playerHand.length > 5){
+// 			newStatus = 'win';
+// 		}
 
-		this.setState({
-			player: playerHand,
-			playerScore: newScore,
-			deck: shuffledDeck,
-			status: newStatus
-		});
+// 		this.setState({
+// 			player: playerHand,
+// 			playerScore: newScore,
+// 			deck: shuffledDeck,
+// 			status: newStatus
+// 		});
 
-	},
+// 	},
 
-	handleStandClick: function(){
+// 	handleStandClick: function(){
 
-		var dealerHand = this.state.dealer;
-		var deck = this.state.deck;
+// 		var dealerHand = this.state.dealer;
+// 		var deck = this.state.deck;
 
-		if(deck.length < 5) {
-      deck = _.shuffle(this.props.deck);
-    }
+// 		if(deck.length < 5) {
+//       deck = _.shuffle(this.props.deck);
+//     }
 
-    var shuffled = _.shuffle(deck);
+//     var shuffled = _.shuffle(deck);
 
-    var dealerScore = this.handleScore(dealerHand);
-    var playerScore = this.handleScore(this.state.player);
+//     var dealerScore = this.handleScore(dealerHand);
+//     var playerScore = this.handleScore(this.state.player);
 
-    var dealerHasCharlie = false;
+//     var dealerHasCharlie = false;
 
-    while (dealerScore < playerScore || dealerScore <= 17) {
+//     while (dealerScore < playerScore || dealerScore <= 17) {
 
-      // deal a card
-      dealerHand.push(shuffled.pop());
-      dealerScore = this.handleScore(dealerHand);
+//       // deal a card
+//       dealerHand.push(shuffled.pop());
+//       dealerScore = this.handleScore(dealerHand);
 
-      if(dealerScore < 21 && dealerHand.length == 5){
-          // five card charlie
-          dealerHasCharlie = true;
-          break;
-      }
-    }
+//       if(dealerScore < 21 && dealerHand.length == 5){
+//           // five card charlie
+//           dealerHasCharlie = true;
+//           break;
+//       }
+//     }
 
-    this.setState({
-      dealer :  dealerHand,
-      deck : shuffled,
-      // compute game status
-      status : (dealerScore < 21 || dealerHasCharlie) ? 'lose' : 'win'
-    });
+//     this.setState({
+//       dealer :  dealerHand,
+//       deck : shuffled,
+//       // compute game status
+//       status : (dealerScore < 21 || dealerHasCharlie) ? 'lose' : 'win'
+//     });
 
-	},
+// 	},
 
-	render: function(){
-		return(
-			<div clasName="table-board">
-				<Hand showDeck={true} hand={this.state.dealer} />
-				<Interface 
-					playerScore={this.handleScore(this.state.player)} 
-					dealerScore={this.handleScore(this.state.dealer)} 
-					deal={this.handleDealClick} 
-					hit={this.handleHitClick} 
-					stand={this.handleStandClick} 
-					status={this.state.status} 
-				/>
-				<Hand hand={this.state.player} />
-			</div>	
-		);
-	}
-});
+// 	render: function(){
+// 		return(
+// 			<div clasName="table-board">
+// 				<Hand showDeck={true} hand={this.state.dealer} />
+// 				<Interface 
+// 					playerScore={this.handleScore(this.state.player)} 
+// 					dealerScore={this.handleScore(this.state.dealer)} 
+// 					deal={this.handleDealClick} 
+// 					hit={this.handleHitClick} 
+// 					stand={this.handleStandClick} 
+// 					status={this.state.status} 
+// 				/>
+// 				<Hand hand={this.state.player} />
+// 			</div>	
+// 		);
+// 	}
+// });
 
-var Hand = React.createClass({
+// var Hand = React.createClass({
 
-	getDefaultProps: function(){
-		return {
-			hand: []
-		}
-	},
+// 	getDefaultProps: function(){
+// 		return {
+// 			hand: []
+// 		}
+// 	},
 
-	render: function(){
-		return(
-			<div className='hand'>
+// 	render: function(){
+// 		return(
+// 			<div className='hand'>
 
-				{this.props.showDeck ? <Card hidden={true}/> : ''}
-				{this.props.hand.map(function(card, i){
-						return <Card face={card.f} value={card.v} key={i}/>
-					})
-				}
-			</div>
-		);
-	}
-});
+// 				{this.props.showDeck ? <Card hidden={true}/> : ''}
+// 				{this.props.hand.map(function(card, i){
+// 						return <Card face={card.f} value={card.v} key={i}/>
+// 					})
+// 				}
+// 			</div>
+// 		);
+// 	}
+// });
 
-var Card = React.createClass({
-	render: function(){
+// var Card = React.createClass({
+// 	render: function(){
 
-		var bgUrl = this.props.hidden ? 'url(img/hidden.png)' : 'url(img/' + this.props.face + '.png)';
+// 		var bgUrl = this.props.hidden ? 'url(img/hidden.png)' : 'url(img/' + this.props.face + '.png)';
 		
-		var cardStyle = {backgroundImage: bgUrl};
+// 		var cardStyle = {backgroundImage: bgUrl};
 
-		return (
-			<div className='card' style={cardStyle}/>
-		);
-	}
-});
+// 		return (
+// 			<div className='card' style={cardStyle}/>
+// 		);
+// 	}
+// });
 
-var Interface = React.createClass({
+// var Interface = React.createClass({
 
-	getDefaultProps: function(){
-		return {
-			status: 'new'
-		}
-	},
+// 	getDefaultProps: function(){
+// 		return {
+// 			status: 'new'
+// 		}
+// 	},
 
-	render: function(){
-		return(
-			<div className='panel interface'>
-				<Outcome status={this.props.status}/>
-				<div className="btn-group btn-group-justified" role="group" aria-label="score">
-					<a className="btn btn-default">Dealer Score: {this.props.dealerScore}</a>
-					<a className="btn btn-default">Player Score: {this.props.playerScore}</a>
-				</div>
-				<br/>
-        <div className="btn-group btn-group-justified" role="group" aria-label="game">
-            <div className="btn-group" role="group">
-                {/* received as props to the Interface component the handleDeal function is now bound to the onClick event */}
-                <button onClick={this.props.deal} type="button" className="btn btn-info">Deal</button>
-            </div>
-            <div className="btn-group" role="group">
-                <button onClick={this.props.hit} type="button" className="btn btn-success">Hit</button>
-            </div>
-            <div className="btn-group" role="group">
-                <button onClick={this.props.stand} type="button" className="btn btn-danger">Stand</button>
-            </div>
-        </div>
-			</div>
-		);
-	}
-});
+// 	render: function(){
+// 		return(
+// 			<div className='panel interface'>
+// 				<Outcome status={this.props.status}/>
+// 				<div className="btn-group btn-group-justified" role="group" aria-label="score">
+// 					<a className="btn btn-default">Dealer Score: {this.props.dealerScore}</a>
+// 					<a className="btn btn-default">Player Score: {this.props.playerScore}</a>
+// 				</div>
+// 				<br/>
+//         <div className="btn-group btn-group-justified" role="group" aria-label="game">
+//             <div className="btn-group" role="group">
+//                 {/* received as props to the Interface component the handleDeal function is now bound to the onClick event */}
+//                 <button onClick={this.props.deal} type="button" className="btn btn-info">Deal</button>
+//             </div>
+//             <div className="btn-group" role="group">
+//                 <button onClick={this.props.hit} type="button" className="btn btn-success">Hit</button>
+//             </div>
+//             <div className="btn-group" role="group">
+//                 <button onClick={this.props.stand} type="button" className="btn btn-danger">Stand</button>
+//             </div>
+//         </div>
+// 			</div>
+// 		);
+// 	}
+// });
 
-var Outcome = React.createClass({
-  getDefaultProps : function(){
-      return {
-          status : "playing",
-      }
-  },
-  render: function() {
-    /* nothing fancy happening here , displaying a bootstrap alert representing the game status */
-    switch(this.props.status) {
-        case "playing":
-            return (<div className="alert alert-info" role="alert">Hit or Stand</div>);
-            break;
-        case "win":
-            return (<div className="alert alert-success" role="alert">Win Win Win</div>);
-            break;
-        case "lose":
-            return (<div className="alert alert-danger" role="alert">You Lose</div>);
-            break;
-        default:
-            return(<div className="alert alert-info" role="alert">Click Deal to Start ! </div>);
-            break;
-    }
-  }
-});
+// var Outcome = React.createClass({
+//   getDefaultProps : function(){
+//       return {
+//           status : "playing",
+//       }
+//   },
+//   render: function() {
+//     /* nothing fancy happening here , displaying a bootstrap alert representing the game status */
+//     switch(this.props.status) {
+//         case "playing":
+//             return (<div className="alert alert-info" role="alert">Hit or Stand</div>);
+//             break;
+//         case "win":
+//             return (<div className="alert alert-success" role="alert">Win Win Win</div>);
+//             break;
+//         case "lose":
+//             return (<div className="alert alert-danger" role="alert">You Lose</div>);
+//             break;
+//         default:
+//             return(<div className="alert alert-info" role="alert">Click Deal to Start ! </div>);
+//             break;
+//     }
+//   }
+// });
 
-export default App
+module.exports = App
