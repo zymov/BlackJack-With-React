@@ -25,7 +25,6 @@ var Table = React.createClass({
 		}
 
 
-		// var score = _.sum(hand, 'v');
 		if(score > 21){
 			var aces = _.countBy(hand, {v: 11}).true;  //check if aces is in hand or not 
 			while(score > 21 && aces > 0){
